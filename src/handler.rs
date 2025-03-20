@@ -1,8 +1,5 @@
 use pnet::packet::{
-    arp::ArpPacket,
-    ethernet::{EtherTypes, EthernetPacket},
-    ip::IpNextHeaderProtocols,
-    ipv4::Ipv4Packet, Packet
+    arp::ArpPacket, ethernet::{EtherTypes, EthernetPacket}, ip::IpNextHeaderProtocols, ipv4::Ipv4Packet, ipv6::Ipv6Packet, Packet
 };
 
 pub fn handle_ethernet_frame(bytes: &[u8]) {
@@ -20,7 +17,10 @@ pub fn handle_ethernet_frame(bytes: &[u8]) {
             Some(packet) => handle_ipv4_packet(packet),
             None => return
         },
-        EtherTypes::Ipv6 => println!("IPv6"),
+        EtherTypes::Ipv6 => match Ipv6Packet::new(ether_frame.payload()) {
+            Some(packet) => handle_ipv6_packet(packet),
+            None => return
+        },
         _ => return
     };
 }
@@ -34,6 +34,15 @@ fn handle_arp_packet(arp_packet: ArpPacket) {
 
 fn handle_ipv4_packet(ipv4_packet: Ipv4Packet) {
     match ipv4_packet.get_next_level_protocol() {
+        IpNextHeaderProtocols::Tcp => println!("TCP"),
+        IpNextHeaderProtocols::Udp => println!("UDP"),
+        IpNextHeaderProtocols::Icmp => println!("ICMP"),
+        _ => return
+    }
+}
+
+fn handle_ipv6_packet(ipv6_packet: Ipv6Packet) {
+    match ipv6_packet.get_next_header() {
         IpNextHeaderProtocols::Tcp => println!("TCP"),
         IpNextHeaderProtocols::Udp => println!("UDP"),
         IpNextHeaderProtocols::Icmp => println!("ICMP"),
