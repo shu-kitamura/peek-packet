@@ -27,7 +27,7 @@ pub fn handle_ethernet_frame(bytes: &[u8]) {
 
 fn handle_arp_packet(arp_packet: ArpPacket) {
     match arp_packet.get_protocol_type() {
-        EtherTypes::Ipv4 => println!("{:?}", arp_packet),
+        EtherTypes::Ipv4 | EtherTypes::Ipv6 => println!("{:?}", arp_packet),
         _ => return
     }
 }
