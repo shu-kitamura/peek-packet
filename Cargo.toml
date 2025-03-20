@@ -1,0 +1,8 @@
+[package]
+name = "peek-packet"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+pnet = "0.35.0"
+pnet_datalink = "0.35.0"
