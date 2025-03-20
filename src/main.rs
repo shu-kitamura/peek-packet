@@ -1,3 +1,7 @@
+mod device;
+
 fn main() {
-    println!("Hello, world!");
+    if let Some(nic) = device::get_network_interface("eth0") {
+         println!("{:?}", nic);
+    };
 }
