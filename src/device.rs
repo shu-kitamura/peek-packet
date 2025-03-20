@@ -8,3 +8,14 @@ pub fn get_network_interface(name: &str) -> Option<NetworkInterface> {
     }
     None
 }
+
+#[cfg(test)]
+mod tests {
+    use super::get_network_interface;
+
+    #[test]
+    fn get_nic() {
+        assert!(get_network_interface("eth0").is_some());
+        assert!(get_network_interface("not_exist_nic").is_none());
+    }
+}
