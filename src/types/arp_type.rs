@@ -34,7 +34,7 @@ impl fmt::Display for ArpHeader {
                         + &format!("\tProtocol\t\t: {}\n", self.to_string_protocol())
                         + &format!("\tSender Mac Address\t: {}\n", self.to_string_sender_mac_addr())
                         + &format!("\tTarget Mac Address\t: {}\n", self.to_string_target_mac_addr())
-                        + &format!("\tSender Mac Address\t: {}\n", self.to_string_sender_ip_addr())
+                        + &format!("\tSender IP Address\t: {}\n", self.to_string_sender_ip_addr())
                         + &format!("\tTarget IP Address\t: {}\n", self.to_string_target_ip_addr())
                         + &format!("\tOperation\t\t: {}\n", self.to_string_operation());
         write!(f, "{}", s)
