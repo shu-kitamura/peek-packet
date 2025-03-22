@@ -1,5 +1,6 @@
 mod device;
 mod handler;
+mod types;
 
 use handler::handle_ethernet_frame;
 use pnet_datalink::{
