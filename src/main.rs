@@ -3,7 +3,7 @@ mod handler;
 mod types;
 
 use handler::handle_ethernet_frame;
-use pnet_datalink::{
+use pnet::datalink::{
     NetworkInterface,
     Channel::Ethernet,
 };
@@ -14,7 +14,7 @@ fn main() {
         None => return
     };
 
-    let (_, mut rx) = match pnet_datalink::channel(&nic, Default::default()) {
+    let (_, mut rx) = match pnet::datalink::channel(&nic, Default::default()) {
         Ok(Ethernet(tx, rx)) => (tx, rx),
         Ok(_) => panic!("Unhandled channel type."),
         Err(e) => panic!("Failed to create channel. {}", e),

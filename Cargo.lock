@@ -49,7 +49,6 @@ name = "peek-packet"
 version = "0.1.0"
 dependencies = [
  "pnet",
- "pnet_datalink",
 ]
 
 [[package]]

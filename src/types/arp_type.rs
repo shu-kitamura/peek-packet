@@ -1,7 +1,7 @@
 use std::{fmt, net::Ipv4Addr};
 
 use pnet::packet::{arp::{ArpHardwareType, ArpHardwareTypes, ArpOperation, ArpOperations, ArpPacket}, ethernet::EtherType};
-use pnet_datalink::MacAddr;
+use pnet::datalink::MacAddr;
 
 pub struct ArpHeader {
     hardware_type: ArpHardwareType,
