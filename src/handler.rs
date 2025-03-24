@@ -28,7 +28,7 @@ pub fn handle_ethernet_frame(bytes: &[u8]) {
 fn handle_arp_packet(arp_packet: ArpPacket) {
     match arp_packet.get_protocol_type() {
         EtherTypes::Ipv4 => {
-            let ah = crate::types::arp_type::ArpHeader::from(arp_packet);
+            let ah = crate::packets::arp::ArpHeader::from(arp_packet);
             println!("{ah}")
         },
         _ => return
